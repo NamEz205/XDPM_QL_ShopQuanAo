@@ -49,7 +49,7 @@ namespace QL_shopquanao
             dgvChiTiet.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-      
+
         private void f_chitiethoadon_Load(object sender, EventArgs e)
         {
             LoadSanPham();
@@ -86,20 +86,42 @@ namespace QL_shopquanao
         {
             try
             {
+                // 1. Lấy dữ liệu từ giao diện
                 string maSP = cboSanPham.SelectedValue.ToString();
-                int soLuong = int.Parse(txtSoLuong.Text);
+                int soLuongBan = int.Parse(txtSoLuong.Text);
                 double donGia = double.Parse(txtDonGia.Text);
 
-                // BỎ 'ThanhTien' ra khỏi danh sách cột và danh sách giá trị
-                string sqlInsert = $@"INSERT INTO ChiTietHoaDon (HoaDonID, MaSanPham, SoLuong, DonGia) 
-                              VALUES ('{MaHD_TruyenSang}', '{maSP}', {soLuong}, {donGia})";
+                // 2. Kiểm tra số lượng tồn kho trước khi bán
+                DataTable dtKho = db.getTable($"SELECT SoLuongTon FROM Kho WHERE MaSanPham = '{maSP}'");
+                if (dtKho.Rows.Count > 0)
+                {
+                    int tonKho = int.Parse(dtKho.Rows[0]["SoLuongTon"].ToString());
+                    if (tonKho < soLuongBan)
+                    {
+                        MessageBox.Show($"Không đủ hàng trong kho! Hiện tại chỉ còn {tonKho} sản phẩm.");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sản phẩm này chưa có trong kho!");
+                    return;
+                }
 
+                // 3. Thêm vào bảng ChiTietHoaDon (Bỏ cột ThanhTien vì là cột tính toán tự động)
+                string sqlInsert = $@"INSERT INTO ChiTietHoaDon (HoaDonID, MaSanPham, SoLuong, DonGia) 
+                              VALUES ('{MaHD_TruyenSang}', '{maSP}', {soLuongBan}, {donGia})";
                 db.ExcuteNonQuery(sqlInsert);
 
-                // Sau khi chèn xong, tính lại tổng tiền cho bảng HoaDon như cũ
+                // 4. CẬP NHẬT KHO: Trừ số lượng tồn
+                string sqlUpdateKho = $"UPDATE Kho SET SoLuongTon = SoLuongTon - {soLuongBan} WHERE MaSanPham = '{maSP}'";
+                db.ExcuteNonQuery(sqlUpdateKho);
+
+                // 5. Cập nhật lại tổng tiền cho bảng HoaDon
                 CapNhatTongTien();
 
-                MessageBox.Show("Thêm sản phẩm thành công!");
+                // 6. Làm mới hiển thị
+                MessageBox.Show("Thêm sản phẩm và cập nhật kho thành công!");
                 LoadChiTiet();
             }
             catch (Exception ex)
@@ -110,15 +132,34 @@ namespace QL_shopquanao
 
         private void btxoa_Click(object sender, EventArgs e)
         {
-            string maSP = cboSanPham.SelectedValue.ToString(); // Hoặc lấy từ GridView
+            if (dgvChiTiet.CurrentRow == null) return;
 
-            if (MessageBox.Show("Xóa sản phẩm này khỏi hóa đơn?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            try
             {
-                string sql = $"DELETE FROM ChiTietHoaDon WHERE HoaDonID = '{MaHD_TruyenSang}' AND MaSanPham = '{maSP}'";
-                db.ExcuteNonQuery(sql);
+                // 1. Lấy thông tin từ dòng đang chọn trước khi xóa
+                string maCT = dgvChiTiet.CurrentRow.Cells["ChiTietID"].Value.ToString();
+                string maSP = dgvChiTiet.CurrentRow.Cells["MaSanPham"].Value.ToString();
+                int soLuongTrongHD = int.Parse(dgvChiTiet.CurrentRow.Cells["SoLuong"].Value.ToString());
 
-                CapNhatTongTien(); // Tính lại tổng tiền sau khi xóa
-                LoadChiTiet();
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa sản phẩm này khỏi hóa đơn?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    // 2. Xóa trong bảng ChiTietHoaDon
+                    db.ExcuteNonQuery($"DELETE FROM ChiTietHoaDon WHERE ChiTietID = '{maCT}'");
+
+                    // 3. CẬP NHẬT KHO: Cộng trả lại số lượng
+                    string sqlTraKho = $"UPDATE Kho SET SoLuongTon = SoLuongTon + {soLuongTrongHD} WHERE MaSanPham = '{maSP}'";
+                    db.ExcuteNonQuery(sqlTraKho);
+
+                    // 4. Cập nhật lại tổng tiền hóa đơn
+                    CapNhatTongTien();
+
+                    MessageBox.Show("Đã xóa sản phẩm và hoàn trả số lượng vào kho!");
+                    LoadChiTiet();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa: " + ex.Message);
             }
         }
 
@@ -137,30 +178,45 @@ namespace QL_shopquanao
         {
             try
             {
-                // 1. Lấy mã ChiTietID từ ô nhập liệu hoặc GridView
-                string maCT = txtMaChiTiet.Text; // Giả sử bạn có ô chứa mã chi tiết
-                if (string.IsNullOrEmpty(maCT))
-                {
-                    MessageBox.Show("Vui lòng chọn bản ghi cần sửa từ danh sách!");
-                    return;
-                }
-
-                // 2. Lấy dữ liệu mới từ giao diện
-                int soLuong = int.Parse(txtSoLuong.Text);
+                // 1. Lấy mã chi tiết và thông tin cũ/mới
+                string maCT = txtMaChiTiet.Text; // Ô chứa mã chi tiết (ẩn hoặc readonly)
+                string maSP = cboSanPham.SelectedValue.ToString();
+                int soLuongMoi = int.Parse(txtSoLuong.Text);
                 double donGia = double.Parse(txtDonGia.Text);
 
-                // 3. Thực hiện câu lệnh UPDATE (Không update ThanhTien)
-                string sqlUpdate = $@"UPDATE ChiTietHoaDon 
-                             SET SoLuong = {soLuong}, 
-                                 DonGia = {donGia} 
-                             WHERE ChiTietID = '{maCT}'";
+                // 2. Lấy số lượng cũ đang có trong database của chi tiết này
+                DataTable dtCu = db.getTable($"SELECT SoLuong FROM ChiTietHoaDon WHERE ChiTietID = '{maCT}'");
+                int soLuongCu = int.Parse(dtCu.Rows[0]["SoLuong"].ToString());
 
-                db.ExcuteNonQuery(sqlUpdate);
+                // 3. Tính toán chênh lệch
+                int chenhLech = soLuongMoi - soLuongCu;
 
-                // 4. Cập nhật lại tổng tiền cho bảng HoaDon
+                // 4. Kiểm tra kho nếu trường hợp mua thêm (chenhLech > 0)
+                if (chenhLech > 0)
+                {
+                    DataTable dtKho = db.getTable($"SELECT SoLuongTon FROM Kho WHERE MaSanPham = '{maSP}'");
+                    int tonKho = int.Parse(dtKho.Rows[0]["SoLuongTon"].ToString());
+                    if (tonKho < chenhLech)
+                    {
+                        MessageBox.Show("Kho không đủ hàng để tăng số lượng!");
+                        return;
+                    }
+                }
+
+                // 5. Cập nhật ChiTietHoaDon
+                string sqlUpdateCT = $@"UPDATE ChiTietHoaDon 
+                                SET SoLuong = {soLuongMoi}, DonGia = {donGia} 
+                                WHERE ChiTietID = '{maCT}'";
+                db.ExcuteNonQuery(sqlUpdateCT);
+
+                // 6. CẬP NHẬT KHO: Trừ đi phần chênh lệch (nếu chenhLech âm thì trừ của âm sẽ thành cộng)
+                string sqlUpdateKho = $"UPDATE Kho SET SoLuongTon = SoLuongTon - {chenhLech} WHERE MaSanPham = '{maSP}'";
+                db.ExcuteNonQuery(sqlUpdateKho);
+
+                // 7. Cập nhật tổng tiền hóa đơn
                 CapNhatTongTien();
 
-                MessageBox.Show("Cập nhật chi tiết hóa đơn thành công!");
+                MessageBox.Show("Cập nhật số lượng và kho thành công!");
                 LoadChiTiet();
             }
             catch (Exception ex)
