@@ -10,7 +10,7 @@ namespace QL_shopquanao
 {
     public class Data
     {
-        private string nguon = @"Data Source=DESKTOP-3FM79T1\MSSQLSERVER01;Initial Catalog=QL_CHQuanAo;Integrated Security=True;TrustServerCertificate=True";
+        private string nguon = @"Data Source=.;Initial Catalog=QL_CHQuanAo;Integrated Security=True;TrustServerCertificate=True";
 
         public DataTable getTable(string sql)
         {

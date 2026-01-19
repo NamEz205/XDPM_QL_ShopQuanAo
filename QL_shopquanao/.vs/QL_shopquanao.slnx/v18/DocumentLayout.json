@@ -1,7 +1,36 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\XDPM_QL_Shop\\QL_shopquanao\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|d:\\xdpm_ql_shop\\ql_shopquanao\\ql_shopquanao\\f_chitiethoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|solutionrelative:ql_shopquanao\\f_chitiethoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|d:\\xdpm_ql_shop\\ql_shopquanao\\ql_shopquanao\\f_chitiethoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|solutionrelative:ql_shopquanao\\f_chitiethoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|d:\\xdpm_ql_shop\\ql_shopquanao\\ql_shopquanao\\f_hoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|solutionrelative:ql_shopquanao\\f_hoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|d:\\xdpm_ql_shop\\ql_shopquanao\\ql_shopquanao\\f_hoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|solutionrelative:ql_shopquanao\\f_hoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|d:\\xdpm_ql_shop\\ql_shopquanao\\ql_shopquanao\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|solutionrelative:ql_shopquanao\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|d:\\xdpm_ql_shop\\ql_shopquanao\\ql_shopquanao\\f_sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|solutionrelative:ql_shopquanao\\f_sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|d:\\xdpm_ql_shop\\ql_shopquanao\\ql_shopquanao\\f_sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEBAF4AD-C632-49BE-80A7-D47D059F81A0}|QL_shopquanao\\QL_shopquanao.csproj|solutionrelative:ql_shopquanao\\f_sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +38,99 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\Form1.cs",
+              "RelativeDocumentMoniker": "QL_shopquanao\\Form1.cs",
+              "ToolTip": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\Form1.cs",
+              "RelativeToolTip": "QL_shopquanao\\Form1.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAApwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-19T07:01:59.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "f_chitiethoadon.cs",
+              "DocumentMoniker": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_chitiethoadon.cs",
+              "RelativeDocumentMoniker": "QL_shopquanao\\f_chitiethoadon.cs",
+              "ToolTip": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_chitiethoadon.cs",
+              "RelativeToolTip": "QL_shopquanao\\f_chitiethoadon.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAiwBwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-19T07:00:56.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "f_chitiethoadon.cs [Design]",
+              "DocumentMoniker": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_chitiethoadon.cs",
+              "RelativeDocumentMoniker": "QL_shopquanao\\f_chitiethoadon.cs",
+              "ToolTip": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_chitiethoadon.cs [Design]",
+              "RelativeToolTip": "QL_shopquanao\\f_chitiethoadon.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-19T07:00:53.22Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "f_hoadon.cs",
+              "DocumentMoniker": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_hoadon.cs",
+              "RelativeDocumentMoniker": "QL_shopquanao\\f_hoadon.cs",
+              "ToolTip": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_hoadon.cs",
+              "RelativeToolTip": "QL_shopquanao\\f_hoadon.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-19T06:52:12.532Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "f_hoadon.cs [Design]",
+              "DocumentMoniker": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_hoadon.cs",
+              "RelativeDocumentMoniker": "QL_shopquanao\\f_hoadon.cs",
+              "ToolTip": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_hoadon.cs [Design]",
+              "RelativeToolTip": "QL_shopquanao\\f_hoadon.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-19T06:51:06.945Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "f_sanpham.cs",
+              "DocumentMoniker": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_sanpham.cs",
+              "RelativeDocumentMoniker": "QL_shopquanao\\f_sanpham.cs",
+              "ToolTip": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_sanpham.cs",
+              "RelativeToolTip": "QL_shopquanao\\f_sanpham.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAwwD4AAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-19T06:38:14.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "f_sanpham.cs [Design]",
+              "DocumentMoniker": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_sanpham.cs",
+              "RelativeDocumentMoniker": "QL_shopquanao\\f_sanpham.cs",
+              "ToolTip": "D:\\XDPM_QL_Shop\\QL_shopquanao\\QL_shopquanao\\f_sanpham.cs [Design]",
+              "RelativeToolTip": "QL_shopquanao\\f_sanpham.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-19T06:37:10.766Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
